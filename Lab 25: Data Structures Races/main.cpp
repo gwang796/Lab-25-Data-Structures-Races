@@ -78,20 +78,50 @@ int main() {
     auto vectinsert = duration_cast<microseconds>(end - start);
     
     start = high_resolution_clock::now();
-    
+    int midpt = lst.size()/2;
+    int counter = 0;
+    for (auto it = lst.begin(); it !=lst.end(); ++it) {
+        if (counter == midpt){
+            lst.insert(it, "TESTCODE");
+            break;
+        }
+        counter++;
+    }
     end = high_resolution_clock::now();
     auto listinsert = duration_cast<microseconds>(end - start);
     
     start = high_resolution_clock::now();
-    vect.insert(vect.begin() + vect.size()/2, "TESTCODE");
+    st.insert("TESTCODE");
     end = high_resolution_clock::now();
     auto setinsert = duration_cast<microseconds>(end - start);
     
+    cout << "Insert" << setw(width2) << vectinsert.count() << setw(width1) << listinsert.count() << setw(width2) << setinsert.count() << endl;
+    
+    start = high_resolution_clock::now();
+    vect.erase(vect.begin() + vect.size()/2);
+    end = high_resolution_clock::now();
+    auto vectdelete = duration_cast<microseconds>(end - start);
+    
+    start = high_resolution_clock::now();
+    counter = 0;
+    for (auto it = lst.begin(); it !=lst.end(); ++it) {
+        if (counter == midpt){
+            lst.erase(it);
+            break;
+        }
+        counter++;
+    }
+    end = high_resolution_clock::now();
+    auto listdelete = duration_cast<microseconds>(end - start);
+    
+    counter = 0;
+    for (auto it = st.begin(); it != st.end(); ++it) {
+        if (counter == st.size()/2){
+            st.erase(it);
+            break;
+        }
+        counter++;
+    }
+    
+    return 0;
 }
-
-/* syntax examples:
-auto start = high_resolution_clock::now()
-auto end = high_resolution_clock::now()
-auto duration = duration_cast<milliseconds>(end - start)
-duration.count() references elapsed milliseconds
-*/
