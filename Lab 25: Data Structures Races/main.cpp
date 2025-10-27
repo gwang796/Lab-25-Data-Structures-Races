@@ -16,8 +16,8 @@
 using namespace std;
 using namespace std::chrono;
 const string txt = "codes.txt";
-const int width1 = 8;
-const int width2 = 12;
+const int width1 = 12;
+const int width2 = 14;
 
 int main() {
     vector<string> vect;
@@ -123,11 +123,11 @@ int main() {
     end = high_resolution_clock::now();
     auto setdelete = duration_cast<microseconds>(end - start);
     
-    cout << "Operation" << right << setw(width2) << "Vector" << setw(width2) << "List" << setw(width2) << "Set" << endl;
-    cout << "Read" << right << setw(width2) << vectorread.count() << setw(width2) << listread.count() << setw(width2) << setread.count() << endl;
-    cout << "Insert" << right << setw(width2) << vectinsert.count() << setw(width1) << listinsert.count() << setw(width2) << setinsert.count() << endl;
-    cout << "Sort" << right << setw(width2) << vectsort.count() << right << setw(width2) << listsort.count() << setw(width2) << setsort << endl;
-    cout << "Delete" << right << setw(width2) << vectdelete.count() << setw(width2) << listdelete.count() << setw(width2) << setdelete.count() << endl;
+    cout << left << setw(width1) << "Operation" << right << setw(width2) << "Vector" << setw(width2) << "List" << setw(width2) << "Set" << endl;
+    cout << left << setw(width1) << "Read" << right << setw(width2) << vectorread.count() << setw(width2) << listread.count() << setw(width2) << setread.count() << endl;
+    cout << left << setw(width1) << "Insert" << right << setw(width2) << vectinsert.count() << setw(width1) << listinsert.count() << setw(width2) << setinsert.count() << endl;
+    cout << left << setw(width1) << "Sort" << right << setw(width2) << vectsort.count() << right << setw(width2) << listsort.count() << setw(width2) << setsort << endl;
+    cout << left << setw(width1) << "Delete" << right << setw(width2) << vectdelete.count() << setw(width2) << listdelete.count() << setw(width2) << setdelete.count() << endl;
     
     return 0;
 }
