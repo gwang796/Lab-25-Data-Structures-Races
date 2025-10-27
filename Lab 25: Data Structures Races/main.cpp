@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
 #include <list>
@@ -25,6 +26,7 @@ int main() {
     ifstream inputFile(txt);
     string code;
     
+    //---Reading Race-----
     auto start = high_resolution_clock::now();
     while(inputFile >> code)
     {
@@ -55,9 +57,7 @@ int main() {
     end = high_resolution_clock::now();
     auto setread = duration_cast<microseconds>(end - start);
     
-    cout << "Operation" << setw(width1) << "Vector" << setw(width1) << "List" << setw(width1) << "Set" << endl;
-    cout << "Read" << setw(width2) << vectorread.count() << setw(width1) << listread.count() << setw(width2) << setread.count() << endl;
-    
+    //---Sorting Race-----
     start = high_resolution_clock::now();
     sort(vect.rbegin(), vect.rend());
     end = high_resolution_clock::now();
@@ -67,11 +67,9 @@ int main() {
     lst.sort();
     end = high_resolution_clock::now();
     auto listsort = duration_cast<microseconds>(end - start);
-    
     int setsort = -1;
     
-    cout << "Sort" << setw(width2) << vectsort.count() << setw(width1) << listsort.count() << setw(width2) << setsort << endl;
-    
+    //---Insert Race-----
     start = high_resolution_clock::now();
     vect.insert(vect.begin() + vect.size()/2, "TESTCODE");
     end = high_resolution_clock::now();
@@ -89,14 +87,13 @@ int main() {
     }
     end = high_resolution_clock::now();
     auto listinsert = duration_cast<microseconds>(end - start);
-    
+
     start = high_resolution_clock::now();
     st.insert("TESTCODE");
     end = high_resolution_clock::now();
     auto setinsert = duration_cast<microseconds>(end - start);
     
-    cout << "Insert" << setw(width2) << vectinsert.count() << setw(width1) << listinsert.count() << setw(width2) << setinsert.count() << endl;
-    
+    //---Delete Race-----
     start = high_resolution_clock::now();
     vect.erase(vect.begin() + vect.size()/2);
     end = high_resolution_clock::now();
@@ -114,6 +111,7 @@ int main() {
     end = high_resolution_clock::now();
     auto listdelete = duration_cast<microseconds>(end - start);
     
+    start = high_resolution_clock::now();
     counter = 0;
     for (auto it = st.begin(); it != st.end(); ++it) {
         if (counter == st.size()/2){
@@ -122,6 +120,14 @@ int main() {
         }
         counter++;
     }
+    end = high_resolution_clock::now();
+    auto setdelete = duration_cast<microseconds>(end - start);
+    
+    cout << "Operation" << right << setw(width2) << "Vector" << setw(width2) << "List" << setw(width2) << "Set" << endl;
+    cout << "Read" << right << setw(width2) << vectorread.count() << setw(width2) << listread.count() << setw(width2) << setread.count() << endl;
+    cout << "Insert" << right << setw(width2) << vectinsert.count() << setw(width1) << listinsert.count() << setw(width2) << setinsert.count() << endl;
+    cout << "Sort" << right << setw(width2) << vectsort.count() << right << setw(width2) << listsort.count() << setw(width2) << setsort << endl;
+    cout << "Delete" << right << setw(width2) << vectdelete.count() << setw(width2) << listdelete.count() << setw(width2) << setdelete.count() << endl;
     
     return 0;
 }
