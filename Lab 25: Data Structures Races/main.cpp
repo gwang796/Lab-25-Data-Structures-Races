@@ -31,7 +31,7 @@ int main() {
         vect.push_back(code);
     }
     auto end = high_resolution_clock::now();
-    auto duration1 = duration_cast<microseconds>(end - start);
+    auto vectorread = duration_cast<microseconds>(end - start);
     
     inputFile.clear(); //clear inputFile
     inputFile.seekg(0); //move back to start of file
@@ -42,7 +42,7 @@ int main() {
         lst.push_back(code);
     }
     end = high_resolution_clock::now();
-    auto duration2 = duration_cast<microseconds>(end - start);
+    auto listread = duration_cast<microseconds>(end - start);
     
     inputFile.clear(); //clear inputFile
     inputFile.seekg(0); //move back to start of file
@@ -53,13 +53,39 @@ int main() {
         st.insert(code);
     }
     end = high_resolution_clock::now();
-    auto duration3 = duration_cast<microseconds>(end - start);
+    auto setread = duration_cast<microseconds>(end - start);
     
     cout << "Operation" << setw(width1) << "Vector" << setw(width1) << "List" << setw(width1) << "Set" << endl;
-    cout << "Read" << setw(width2) << duration1.count() << setw(width1) << duration2.count() << setw(width2) << duration3.count() << endl;
+    cout << "Read" << setw(width2) << vectorread.count() << setw(width1) << listread.count() << setw(width2) << setread.count() << endl;
     
+    start = high_resolution_clock::now();
+    sort(vect.rbegin(), vect.rend());
+    end = high_resolution_clock::now();
+    auto vectsort = duration_cast<microseconds>(end - start);
     
-
+    start = high_resolution_clock::now();
+    lst.sort();
+    end = high_resolution_clock::now();
+    auto listsort = duration_cast<microseconds>(end - start);
+    
+    int setsort = -1;
+    
+    cout << "Sort" << setw(width2) << vectsort.count() << setw(width1) << listsort.count() << setw(width2) << setsort << endl;
+    
+    start = high_resolution_clock::now();
+    vect.insert(vect.begin() + vect.size()/2, "TESTCODE");
+    end = high_resolution_clock::now();
+    auto vectinsert = duration_cast<microseconds>(end - start);
+    
+    start = high_resolution_clock::now();
+    
+    end = high_resolution_clock::now();
+    auto listinsert = duration_cast<microseconds>(end - start);
+    
+    start = high_resolution_clock::now();
+    vect.insert(vect.begin() + vect.size()/2, "TESTCODE");
+    end = high_resolution_clock::now();
+    auto setinsert = duration_cast<microseconds>(end - start);
     
 }
 
